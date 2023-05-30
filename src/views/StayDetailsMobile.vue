@@ -1,8 +1,7 @@
 <template>
+  <StayImgPreview class="imgs-details-carusell full" :imgs="stay.imgUrls" />
   <main v-if="stay" class="stay-details-mobile">
-    <StayImgPreview class="imgs-details-carusell" :imgs="stay.imgUrls" />
     <StayHeaderInfoMobile :stay="stay" />
-    <!-- <StayDetailsImgs :stay="stay" /> -->
     <!-- Details-container -->
     <section class="details-container-mobile">
       <!-- ferrites -->
@@ -12,7 +11,7 @@
             <h3>Entire amazing views hosted by {{ stay.host.fullname }}</h3>
             <p>{{ guestsNum }} • {{ bedroomNum }} • {{ bedsNum }} • {{ bathsNum }}</p>
           </div>
-          <img :src="stay.host.imgUrl" />
+          <img :src="stay.host.thumbnailUrl" />
         </div>
 
         <div class="ferrites-main">
@@ -44,7 +43,6 @@
 
         <!-- aircover -->
         <section class="aircover">
-          <!-- <img src="../../imgs_test/aircover_logo.webp" alt="" srcset="" /> -->
           <img src="../../src/imgs/aircover_logo/aircover_logo.webp" alt="aircover" />
           <p>
             Every booking includes free protection from Host cancellations, listing inaccuracies,
@@ -52,6 +50,7 @@
           </p>
           <a href="">Learn more</a>
         </section>
+
         <!-- ameneties -->
         <section class="ameneties">
           <h3>What this place offers</h3>
@@ -67,17 +66,20 @@
       <!-- <DetailsOrderBox :searchDetails="searchDetails" :stay="stay" /> -->
     </section>
   </main>
-  <DetailsReviewsMobile :stay="stay" />
+
+  <!-- <DetailsReviewsMobile :stay="stay" /> -->
+
   <section style="margin: 0" class="map">
-    <h3 style="margin: 4px">Where you'll be</h3>
+    <h3 style="margin: 15px">Where you'll be</h3>
     <GoogleMap style="width: 85%; height: 85%; margin: auto" :stay="stay" />
+
     <div class="place-details-txt">
       <h3>{{ stay.loc.city }}, {{ stay.loc.country }}</h3>
       <p>{{ stay.summary }}</p>
     </div>
   </section>
 
-  <section style="margin-top: 10em" class="host-info-mobile">
+  <!-- <section style="margin-top: 15em" class="host-info-mobile">
     <div class="header-mobile">
       <h3>Hosted by {{ stay.host.fullname }}</h3>
       <img :src="stay.host.imgUrl" />
@@ -117,12 +119,16 @@
         </p>
       </div>
     </section>
-  </section>
+  </section> -->
+
+  <StayDetailsFooterMobile />
 </template>
 
 <script>
 import DetailsOrderBox from '../cmps/DetailsOrderBox.vue'
 import StayHeaderInfoMobile from '../cmps/StayHeaderInfoMobile.vue'
+import StayDetailsFooterMobile from '../cmps/StayDetailsFooterMobile.vue'
+
 import StayDetailsImgs from '../cmps/StayDetailsImgs.vue'
 import DetailsReviewsMobile from '../cmps/DetailsReviewsMobile.vue'
 import GoogleMap from '../cmps/GoogleMap.vue'
@@ -165,6 +171,7 @@ export default {
       this.searchDetails.where = this.stay.loc.country
     }
   },
+
   mounted() {
     const currRoute = this.$route.path
     if (currRoute.includes('stay')) {
@@ -174,14 +181,18 @@ export default {
     const { adults, children, infants, pets } = this.$route.query
 
     this.searchDetails.guestNum = +adults + +children + +infants + +pets
-    console.log('this.searchDetails', this.searchDetails)
   },
 
   methods: {
     async loadStay() {
       const { stayId } = this.$route.params
-
       this.$store.dispatch({ type: 'getStay', stayId: stayId })
+    },
+  },
+
+  watch: {
+    stay() {
+      console.log('stay', this.stay)
     },
   },
   components: {

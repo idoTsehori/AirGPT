@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      pos1: { lat: this.stay.loc.lat, lng: this.stay.loc.lan },
+      pos1: { lat: this.stay.loc.lan, lng: this.stay.loc.lat },
     }
   },
 }

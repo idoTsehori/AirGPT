@@ -12,7 +12,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.7",
     "axios": "^0.27.2",
-    "chart.js": "^3.9.1",
+    "chart.js": "^4.3.0",
     "element-plus": "^2.3.1",
     "sass": "^1.53.0",
     "socket.io-client": "^4.5.1",

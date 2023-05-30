@@ -62,7 +62,6 @@
             <div class="offers grid">
               <div v-for="amenitie in this.stay.amenities" class="offer">
                 <img :src="'../src/imgs/amenities/' + amenitie + '.svg'" />
-                <!-- <img :src="'../imgs/svg_symbols/tv.svg'" /> -->
                 <p>{{ amenitie }}</p>
               </div>
               <p
@@ -100,9 +99,7 @@
               ><img src="../imgs/svg_symbols/black_star.svg" />
               {{ stay.reviews.length }} reviews</span
             >
-            <span
-              ><img src="../imgs/svg_symbols/verified.svg" alt="" srcset="" /> Identity verified
-            </span>
+            <span><img src="../imgs/svg_symbols/verified.svg" /> Identity verified </span>
             <span><img src="../imgs/svg_symbols/superhost.png" /></span>
             <span v-if="stay.host.isSuperHost">Superhost </span>
           </div>
@@ -125,7 +122,7 @@
           <p>Response rate: 100%</p>
           <p>Response time: within an hour</p>
           <div class="protect flex">
-            <img src="../imgs/svg_symbols/protect_logo.svg" alt="" srcset="" />
+            <img src="../imgs/svg_symbols/protect_logo.svg" />
             <p>
               To protect your payment, never transfer money or communicate outside of the Airgpt
               website or app
